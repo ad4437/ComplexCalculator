@@ -57,10 +57,8 @@ public class App {
         Scanner in = new Scanner(System.in);
         String repeat = "y";
         System.out.println("Possible Input Strings:\n");
-        System.out.println("Whole Numbers: a+bi + c+di");
-        System.out.println("Fractions: a/b-c/di + e/f-g/hi");
-        System.out.println("Note: With the form: num1 operation num2,");
-        System.out.println("the operation is applied to all components of num2, as if num2 was surrounded by ()'s\n");
+        System.out.println("Whole Numbers / Decimals: (a+bi) + (c+di)");
+        System.out.println("Fractions: (a/b-c/di) + (e/f-g/hi)\n");
         System.out.println("Valid operations between real & imaginary components are + or -");
         System.out.println("Valid operations between both numbers are +, -, *, or /");
         System.out.println("If no imaginary or real part for a certain number, do not include it");
@@ -78,8 +76,8 @@ public class App {
 
             try {
                 operation = exp.substring(space1 + 1, space2);
-                String num1Exp = exp.substring(0, space1);
-                String num2Exp = exp.substring(space2 + 1);
+                String num1Exp = exp.substring(1, space1 - 1);
+                String num2Exp = exp.substring(space2 + 2, exp.length() - 1);
                 num1 = parseComplex(num1Exp);
                 num2 = parseComplex(num2Exp);
                 if (operation.equals("/") && num2.a.getDouble() == 0) {
