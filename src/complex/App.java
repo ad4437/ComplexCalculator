@@ -56,13 +56,15 @@ public class App {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         String repeat = "y";
-        System.out.println("Possible Input Strings:\n");
+        System.out.println("Input Format:\n");
         System.out.println("Whole Numbers / Decimals: (a+bi) + (c+di)");
-        System.out.println("Fractions: (a/b-c/di) + (e/f-g/hi)\n");
+        System.out.println("Fractions: (a/b+c/di) + (e/f+g/hi)\n");
         System.out.println("Valid operations between real & imaginary components are + or -");
         System.out.println("Valid operations between both numbers are +, -, *, or /");
-        System.out.println("If no imaginary or real part for a certain number, do not include it");
-        System.out.println("i.e. a+bi (with no imaginary) is just a\n");
+        System.out.println("If no imaginary or real part for a certain number, it can be omitted");
+        System.out.println("i.e. a+bi (where b=0) is just \"a\"");
+        System.out.println("Automatically, integers return a result with fractions, to use decimals, input a decimal");
+        System.out.println("i.e. (16) / (5) yields 16/5 but (16.0) / (5) yields 3.2\n");
 
         while (repeat.equals("y")) {
             System.out.print("\nEnter Expression: ");
@@ -80,7 +82,7 @@ public class App {
                 String num2Exp = exp.substring(space2 + 2, exp.length() - 1);
                 num1 = parseComplex(num1Exp);
                 num2 = parseComplex(num2Exp);
-                if (operation.equals("/") && num2.a.getDouble() == 0) {
+                if (operation.equals("/") && (num2.a.getDouble() == 0 && num2.b.getDouble() == 0)) {
                     throw new ArithmeticException();
                 }
             } catch (ArithmeticException e) {

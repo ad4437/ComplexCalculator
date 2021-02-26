@@ -60,15 +60,15 @@ public class complexNumber implements Number {
     @Override
     public complexNumber subtract(Number n) {
         complexNumber num = typeCheck(n);
-        num.a = num.a.multiply(new Decimal(-1));
-        num.b = num.b.multiply(new Decimal(-1));
+        num.a = num.a.multiply(new Fraction(-1, 1));
+        num.b = num.b.multiply(new Fraction(-1, 1));
         return add(num);
     }
 
     @Override
     public complexNumber multiply(Number n) {
         complexNumber num = typeCheck(n);
-        RealNumber realProduct = this.a.multiply(num.a).add(this.b.multiply(num.b).multiply(new Decimal(-1)));
+        RealNumber realProduct = this.a.multiply(num.a).add(this.b.multiply(num.b).multiply(new Fraction(-1, 1)));
         RealNumber imagProduct = this.a.multiply(num.b).add(this.b.multiply(num.a));
         return new complexNumber(realProduct, imagProduct);
     }
